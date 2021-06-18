@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TabbedSample.Models"
+             Title="Clientes"
+             x:Class="TabbedSample.Views.ClientsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem IconImageSource="icon_feed.png" Text="Ordenar" Clicked="ToolbarItem_Clicked_1"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*">
+            <StackLayout >
+                <SearchBar Placeholder="Buscar por nombre:" 
+                           VerticalTextAlignment="Center"
+                           FontAttributes="Italic"
+                           TextChanged="SearchBar_TextChanged"
+                           />
+                <BoxView BackgroundColor="Gray" HeightRequest="1"/>
+            </StackLayout>
+            <CollectionView Grid.Row="1"  x:Name="ListViewClientes" SelectionMode="Single" SelectionChanged="ListViewClientes_SelectionChanged" >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackLayout x:DataType="models:Cliente">
+                            <Label FontAttributes="Bold" FontSize="Large">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Nombre}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding Apellidos}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{Binding Telefono}"  FontSize="Medium"/>
+                            <Label Text="{Binding FechaNacimiento}"  FontSize="Medium"/>
+                            <Label Text="{Binding ID_CLIENTE}"  FontSize="Medium"/>
+                            <Label Text="{Binding Observaciones}"  FontSize="Medium"/>
+                            
+
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>
